@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Details — Veda Vyasa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#080a0e;
+      --surface:#0f1117;
+      --card:#13161d;
+      --border:#1c2030;
+      --border2:#252a3a;
+      --purple:#8b5cf6;
+      --purple-light:#a78bfa;
+      --teal:#00e5c3;
+      --teal-dim:rgba(0,229,195,0.15);
+      --purple-dim:rgba(139,92,246,0.15);
+      --text:#f1f3f9;
+      --muted:#64748b;
+      --muted2:#94a3b8;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family:'DM Sans',sans-serif;
+      font-weight:300;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;justify-content:space-between;align-items:center;
+      padding:1rem 3rem;
+      background:rgba(8,10,14,0.8);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo{
+      font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+      background:linear-gradient(135deg,var(--purple),var(--teal));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;
+      text-decoration:none;
+    }
+    .back-btn{
+      color:var(--muted2);text-decoration:none;font-size:0.8rem;
+      padding:0.5rem 1rem;border-radius:50px;
+      border:1px solid var(--border);background:var(--surface);
+      transition:all 0.2s;display:flex;align-items:center;gap:0.5rem;
+    }
+    .back-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
+
+    .container{
+      max-width:900px;margin:120px auto 60px;padding:0 2rem;
+    }
+    .project-header{margin-bottom:3rem}
+    .project-tag{
+      display:inline-block;
+      font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+      color:var(--purple-light);
+      background:var(--purple-dim);border:1px solid rgba(139,92,246,0.3);
+      padding:0.3rem 0.9rem;border-radius:50px;margin-bottom:1rem;
+    }
+    .project-title{
+      font-family:'Syne',sans-serif;font-weight:800;
+      font-size:clamp(2.5rem,5vw,4rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:1.5rem;
+    }
+    .project-meta{
+      display:flex;gap:2rem;margin-bottom:2rem;flex-wrap:wrap;
+    }
+    .meta-item h4{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.4rem}
+    .meta-item p{font-size:0.9rem;color:var(--text);font-weight:500}
+
+    .project-content{
+      background:var(--surface);border:1px solid var(--border);border-radius:24px;
+      padding:3rem;margin-bottom:3rem;position:relative;overflow:hidden;
+    }
+    .project-content h3{font-family:'Space Grotesk',sans-serif;margin-bottom:1rem;font-size:1.4rem;color:var(--purple-light)}
+    .project-content p{margin-bottom:1.5rem;color:var(--muted2);font-size:1rem;line-height:1.8}
+    .project-content ul{list-style:none;margin-bottom:1.5rem}
+    .project-content li{margin-bottom:0.8rem;padding-left:1.5rem;position:relative;color:var(--muted2)}
+    .project-content li::before{content:"→";position:absolute;left:0;color:var(--teal)}
+
+    .project-image{
+      width:100%;height:400px;background:var(--card);border-radius:16px;
+      margin-bottom:2rem;border:1px solid var(--border2);
+      display:flex;align-items:center;justify-content:center;font-size:3rem;
+      position:relative;overflow:hidden;
+    }
+    .project-image::after{
+        content:'';position:absolute;inset:0;
+        background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(0,229,195,0.1));
+    }
+
+    .tech-stack{display:flex;flex-wrap:wrap;gap:0.7rem;margin-top:2rem}
+    .tech-tag{
+      padding:0.4rem 1rem;border-radius:50px;background:var(--border);
+      color:var(--muted2);font-size:0.8rem;border:1px solid var(--border2);
+    }
+
+    .links-section{display:flex;gap:1rem;margin-top:2rem}
+    .link-btn{
+      padding:0.8rem 1.8rem;border-radius:50px;font-size:0.85rem;font-weight:600;
+      text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem;
+    }
+    .link-btn.primary{background:linear-gradient(135deg,var(--purple),var(--teal));color:#000}
+    .link-btn.secondary{border:1px solid var(--border2);color:var(--text)}
+    .link-btn:hover{transform:translateY(-2px);opacity:0.9}
+
+    footer{
+      border-top:1px solid var(--border);padding:2rem 3rem;text-align:center;
+      color:var(--muted);font-size:0.8rem;
+    }
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .reveal{animation:fadeUp 0.8s ease forwards}
+
+    @media(max-width:768px){
+      nav{padding:1rem 1.5rem}
+      .container{margin-top:100px;padding:0 1.5rem}
+      .project-content{padding:2rem 1.5rem}
+      .project-image{height:250px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">VV</a>
+  <a href="index.html#projects" class="back-btn">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Back to Projects
+  </a>
+</nav>
+
+<div class="container">
+  <div id="content-area">
+    <!-- Content injected via JS -->
+    <div style="text-align:center;padding:100px 0;">
+        <h1 style="color:var(--muted)">Loading Project...</h1>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2025 Veda Vyasa · Project Showcase
+</footer>
+
+<script>
+  const projects = {
+    "1": {
+      title: "ESP32 Air Mouse",
+      tag: "Embedded Systems",
+      desc: "A wearable interaction device that allows for cursor control in 3D space. By using sensor fusion algorithms on MPU6050 data, the ESP32 accurately tracks hand orientation and translates it to HID mouse movements.",
+      features: [
+        "Real-time 6-axis motion tracking using MPU6050 (IMU)",
+        "Complimentary Filter / Madgwick filter implementation for stability",
+        "BLE (Bluetooth Low Energy) HID profile for seamless PC/Mobile connection",
+        "Gesture-based clicking and scrolling"
+      ],
+      stack: ["Embedded C++", "ESP-IDF", "I2C Protocol", "Sensor Fusion", "BLE"],
+      year: "2024",
+      role: "Lead Developer",
+      github: "https://github.com/Vedavyasa21",
+      demo: "#"
+    },
+    "2": {
+      title: "AI Automation Workflow",
+      tag: "Automation & AI",
+      desc: "A complex multi-stage automation pipeline designed to handle content creation autonomously. It leverages n8n as the orchestrator to connect various AI services and APIs.",
+      features: [
+        "Automated information retrieval and summarization",
+        "Dynamic video generation using cloud-based rendering (FFmpeg/Cloudinary)",
+        "Automated subtitling and background music selection",
+        "Scheduled cross-platform publishing (Instagram, LinkedIn, Twitter)"
+      ],
+      stack: ["n8n", "Flowise", "Python", "OpenAI API", "Webhooks"],
+      year: "2024",
+      role: "Workflow Architect",
+      github: "https://github.com/Vedavyasa21",
+      demo: "#"
+    },
+    "3": {
+      title: "Self-Hosted Linux Server",
+      tag: "DevOps & Infrastructure",
+      desc: "A private infrastructure project aimed at full data sovereignty. Built on an old machine repurposed as a robust Ubuntu server hosting critical web applications and storage.",
+      features: [
+        "Hardened Ubuntu Server configuration with SSH keys and Fall2Ban",
+        "Nextcloud instance for private cloud storage and file sharing",
+        "Nginx Reverse Proxy with automated SSL certificates (Certbot)",
+        "Dockerized application management for high availability"
+      ],
+      stack: ["Ubuntu Server", "Nginx", "Docker", "Networking", "Bash Scripting"],
+      year: "2023",
+      role: "System Admin",
+      github: "https://github.com/Vedavyasa21",
+      demo: "#"
+    },
+    "4": {
+      title: "MindSpace",
+      tag: "Full-Stack Web App",
+      desc: "MindSpace is a dedicated student mental health portal. It addresses the unique stressors of college life by providing easy tools for emotional tracking and help-seeking.",
+      features: [
+        "Personalized mood dashboard with data visualization",
+        "Incident logger for health issues with privacy-first encryption",
+        "Integrated wellness resource library (Articles, Audios)",
+        "Secure user authentication and data management via Django"
+      ],
+      stack: ["Django", "PostgreSQL", "JavaScript", "CSS3", "Bootstrap"],
+      year: "2023",
+      role: "Full-Stack Developer",
+      github: "https://github.com/Vedavyasa21",
+      demo: "#"
+    }
+  };
+
+  function loadProject() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const project = projects[id];
+    const content = document.getElementById('content-area');
+
+    if (!project) {
+      content.innerHTML = `<div style="text-align:center;padding:100px 0;"><h1 style="color:var(--muted)">Project Not Found</h1><a href="index.html" class="link-btn secondary" style="margin-top:2rem">Back Home</a></div>`;
+      return;
+    }
+
+    content.innerHTML = `
+      <div class="project-header reveal">
+        <span class="project-tag">${project.tag}</span>
+        <h1 class="project-title">${project.title}</h1>
+        <div class="project-meta">
+          <div class="meta-item">
+            <h4>Year</h4>
+            <p>${project.year}</p>
+          </div>
+          <div class="meta-item">
+            <h4>Role</h4>
+            <p>${project.role}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-image reveal">
+        ${id === '1' ? '🖱️' : id === '2' ? '🤖' : id === '3' ? '🖥️' : '🧠'}
+      </div>
+
+      <div class="project-content reveal" style="animation-delay: 0.2s">
+        <h3>Overview</h3>
+        <p>${project.desc}</p>
+        
+        <h3>Key Features</h3>
+        <ul>
+          ${project.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+
+        <h3>Tech Stack</h3>
+        <div class="tech-stack">
+          ${project.stack.map(s => `<span class="tech-tag">${s}</span>`).join('')}
+        </div>
+
+        <div class="links-section">
+          <a href="${project.github}" target="_blank" class="link-btn primary">View Source on GitHub</a>
+          <a href="${project.demo}" class="link-btn secondary">Live Demo</a>
+        </div>
+      </div>
+    `;
+  }
+
+  loadProject();
+</script>
+
+</body>
+</html>
